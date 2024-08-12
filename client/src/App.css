@@ -1,0 +1,34 @@
+
+.smt{
+   background-image: url("https://images.unsplash.com/photo-1552917690-2f32ed7c0823?q=80&w=1938&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+    background-repeat: no-repeat;
+    height: 100;
+    min-height: 200%;
+    margin: 0; /* Remove default margin */
+    padding-bottom: 2px;
+    background-size: cover; /* Cover the entire container */
+    background-position: center;
+   
+}
+
+.bg-carousel {
+    background-image: url('https://assets.winni.in/product/primary/2024/3/94573.jpeg?dpr=1&w=400');
+    background-size: cover;
+    background-position: center;
+    animation: carousel 15s ease-in-out infinite;
+  }
+
+  @keyframes carousel {
+    0% {
+      background-image: url('https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?q=80&w=1950&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    }
+    33% {
+      background-image: url('https://assets.winni.in/product/primary/2023/8/88014.jpeg?dpr=1&w=400');
+    }
+    66% {
+      background-image: url('https://www.fnp.com/images/pr/l/v20221205202014/blackforest-cake-1kg_1.jpg');
+    }
+    100% {
+      background-image: url('https://assets.winni.in/product/primary/2014/6/33697.jpeg?dpr=1&w=400');
+    }
+  }
