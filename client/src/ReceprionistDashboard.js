@@ -7,15 +7,14 @@ import { SearchIcon } from '@chakra-ui/icons';
 
 const { Option } = Select;
 
-const ReceptionistDashboard = () => {
+const ReceptionistDashboard = ({socket}) => {
   const [orders, setOrders] = useState([]);
   const [cakeDetails, setCakeDetails] = useState({});
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [loading, setLoading] = useState(true);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [text,setText]=useState('')
-  useEffect(() => {
-    const fetchOrders = async () => {
+  const fetchOrders = async () => {
       try {
         const response = await axios.get(`${process.env.REACT_APP_URL}/cake/get-orders/?search=${text}`);
         const fetchedOrders = response.data.orders || [];
@@ -35,14 +34,23 @@ const ReceptionistDashboard = () => {
         setLoading(false);
       }
     };
+  useEffect(() => {
+    
 
-    fetchOrders();
+fetchOrders()
   }, [text]);
+ 
+   useEffect(()=>{
+    socket.on('updateOrders',()=>{
+      console.log("hello")
+      fetchOrders()})
+  },[socket])
+
 console.log(cakeDetails)
   const showModal = (order) => {
     setSelectedOrder(order);
     setIsModalVisible(true);
-  };
+  }
 
   const handleUpdateOrder = async (values) => {
     try {
@@ -51,12 +59,14 @@ console.log(cakeDetails)
         status: values.status,
       };
       console.log(updatedOrder)
+      
       await axios.post(`${process.env.REACT_APP_URL}/cake/update-order/${selectedOrder._id}`, updatedOrder);
-      setOrders((prevOrders) =>
-        prevOrders.map((order) =>
-          order._id === selectedOrder._id ? { ...order, ...updatedOrder } : order
-        )
-      );
+      // setOrders((prevOrders) =>
+      //   prevOrders.map((order) =>
+      //     order._id === selectedOrder._id ? { ...order, ...updatedOrder } : order
+      //   )
+      // );
+      
       message.success('Order updated successfully');
     } catch (error) {
       console.error('Error updating order:', error);
