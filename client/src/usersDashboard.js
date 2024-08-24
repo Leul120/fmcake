@@ -33,7 +33,7 @@ import axios from 'axios';
 import { AppContext } from './App';
 import { Tag } from 'antd';
 
-const UserDashboard = () => {
+const UserDashboard = ({socket}) => {
   const [orders, setOrders] = useState([]);
   const [cakeDetails, setCakeDetails] = useState({});
   const [loading, setLoading] = useState(true);
@@ -42,7 +42,7 @@ const UserDashboard = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const toast = useToast();
 
-  useEffect(() => {
+  
     const fetchOrders = async () => {
       try {
         if (user) {
@@ -70,8 +70,15 @@ const UserDashboard = () => {
         setLoading(false);
       }
     };
+    useEffect(() => {
     fetchOrders();
   }, [user]);
+useEffect(()=>{
+  socket.on('updateOrders',()=>{
+      console.log("hello")
+      fetchOrders()})
+},[socket])
+  
 console.log(orders)
   const currentOrders = orders.filter((order) => order.status !== 'Delivered');
   const pastOrders = orders.filter((order) => order.status === 'Delivered');
@@ -111,9 +118,9 @@ console.log(pastOrders)
     <ChakraProvider>
       <Box className="min-h-screen bg-gray-100 py-12">
         <Container maxW="container.lg" bg="white" p={8} borderRadius="md" shadow="md">
-          <Heading as="h1" size="xl" textAlign="center" mb={6}>
+          {/* <Heading as="h1" size="xl" textAlign="center" mb={6}>
             User Dashboard
-          </Heading>
+          </Heading> */}
 
           <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10} mb={10}>
             <Stat>
