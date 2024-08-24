@@ -17,8 +17,10 @@ import UserDashboard from './usersDashboard';
 import ShopDashboard from './ShopDashboard';
 import ReceptionistDashboard from './ReceprionistDashboard';
 import BakerDashboard from './BakerDashboard';
+import socketIO from 'socket.io-client';
+const socket = socketIO.connect('http://localhost:9000');
 export const AppContext=createContext()
-
+// const socket=0
 function App() {
   const [user,setUser]=useState(null)
   const [text,setText]=useState('')
@@ -39,11 +41,11 @@ function App() {
           <Route path='/faq' element={<FAQ/>}/>
           <Route path='/auth' element={<LoginSignup/>}/>
           <Route path='/profile-management' element={<ProfileManagement/>}/>
-          <Route path='/add-cake' element={<CakeEntry/>}/>
-          <Route path='user-dashboard' element={<UserDashboard/>}/>
-          <Route path='/shop-dashboard' element={<ShopDashboard/>}/>
-          <Route path='/reception-dashboard' element={<ReceptionistDashboard/>}/>
-          <Route path='/baker-dashboard' element={<BakerDashboard/>}/>
+          <Route path='/add-cake' element={<CakeEntry socket={socket}/>}/>
+          <Route path='user-dashboard' element={<UserDashboard socket={socket}/>}/>
+          <Route path='/shop-dashboard' element={<ShopDashboard socket={socket}/>}/>
+          <Route path='/reception-dashboard' element={<ReceptionistDashboard socket={socket}/>}/>
+          <Route path='/baker-dashboard' element={<BakerDashboard socket={socket}/>}/>
         </Routes>
       </Router>
       </AppContext.Provider>
