@@ -66,7 +66,7 @@ const settingsData = {
   hours: 'Mon-Fri: 9am - 6pm',
 };
 
-const ShopDashboard = () => {
+const ShopDashboard = ({socket}) => {
   const [promotionModalVisible, setPromotionModalVisible] = useState(false);
   const [form] = Form.useForm();
     const [orderNumber,setOrderNumber]=useState({})
@@ -117,12 +117,41 @@ const ShopDashboard = () => {
     }
   }
   useEffect(()=>{
-    getAllUsers()
+    
+      getAllUsers()
     getOrderNumbers()
     getRecentOrders()
     fetchCrew()
     fetchBestSelling()
+    
   },[])
+    
+
+  // Listening for updates to order numbers
+  
+
+  // Listening for updates to recent orders
+  useEffect(()=>{
+    socket.on('updateUsers', () => {
+    getAllUsers();
+  });
+    socket.on('updateOrderNumbers', () => {
+    getOrderNumbers();
+  });
+    socket.on('updateOrders',()=>{
+      console.log("hello")
+      getRecentOrders()})
+  },[socket])
+
+  // Listening for updates to the crew
+  socket.on('updateCrew', () => {
+    fetchCrew();
+  });
+
+  // Listening for updates to best-selling items
+  socket.on('updateBestSelling', () => {
+    fetchBestSelling();
+  });
 const fetchCrew = async () => {
   try {
     const response = await axios.get(`${process.env.REACT_APP_URL}/user`);
