@@ -133,7 +133,7 @@ function Main() {
 
         {/* Menu Section */}
         <Box py={12} bgColor="#f5f5dc">
-          <Container maxW="container.xl">
+          <Container maxW="container.xl" id='menu'>
             <Heading as="h2" size="xl" textAlign="center" color="#556b2f" mb={8} fontWeight="bold">
               Our Menu
             </Heading>
