@@ -7,8 +7,16 @@ const Order = require('../models/orderModel');
 const Review = require('../models/reviewModel');
 const ApiFeatures=require('../utils/ApiFeatures')
 const { ObjectId } = mongoose.Types;
+const http = require('http');
+const socket=require('socket.io')(9000,{
+  cors:{
+    origin:['http://localhost:3000']
+  }
+})
 
-
+socket.on("connection",socket=>{
+    console.log(socket.id)
+})
 
 
 
@@ -176,6 +184,7 @@ const order=await Order.create({
     deliveryDate:req.body.deliveryDate
 })
 await User.findByIdAndUpdate(req.params.userID,{orderHistory:order._id})
+socket.emit('updateOrders')
 res.status(200).json(order)
     }catch(error){
         console.log(error)
@@ -238,6 +247,7 @@ exports.updateOrder=async (req,res)=>{
     const order=await Order.findOneAndUpdate({_id:orderID},{
       status:req.body.status
     })
+    socket.emit('updateOrders')
     res.status(200).json(order)
   }catch(error){
     console.log(error)
