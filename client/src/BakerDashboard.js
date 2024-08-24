@@ -6,7 +6,7 @@ import './App.css';
 
 const { Option } = Select;
 
-const BakerDashboard = () => {
+const BakerDashboard = ({socket}) => {
   const [orders, setOrders] = useState([]);
   const [cakeDetails, setCakeDetails] = useState({});
   const [loading, setLoading] = useState(true);
@@ -51,6 +51,11 @@ useEffect(() => {
   fetchOrders();
 }, [page]);
   console.log(cakeDetails)
+  useEffect(()=>{
+    socket.on('updateOrders',()=>{
+      console.log("hello")
+      fetchOrders()})
+  },[socket])
 
   const handleStatusChange =async (orderId, status) => {
     try{
