@@ -164,7 +164,7 @@ console.log(loadingDetails)
         </Box>
 
         <Container maxW="container.md" flex="1">
-          {user && (
+          {user ? (
             <Box bgColor="white" p={8} borderRadius="lg" boxShadow="md">
               <form onSubmit={handleSubmit}>
                 <VStack spacing={6}>
@@ -281,7 +281,7 @@ console.log(loadingDetails)
                 </VStack>
               </form>
             </Box>
-          )}
+          ):(<Heading size='md' className='text-green-600 flex items-center justify-center'> Log in to order!</Heading>)}
         </Container>
       </Box>
 
