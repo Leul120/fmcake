@@ -117,8 +117,7 @@ const ShopDashboard = ({socket}) => {
     }
   }
   useEffect(()=>{
-    
-      getAllUsers()
+    getAllUsers()
     getOrderNumbers()
     getRecentOrders()
     fetchCrew()
