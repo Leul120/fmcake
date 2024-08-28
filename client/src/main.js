@@ -146,29 +146,54 @@ function Main() {
               <SimpleGrid columns={{ base: 1, sm: 2, md: 3 }} spacing={10}>
                 {cakes.map((cake, index) => (
                   <Box
-                    key={index}
-                    bgColor="rgba(245, 245, 220, 0.8)"
-                    borderRadius="md"
-                    boxShadow="lg"
-                    overflow="hidden"
-                    className="transform transition-transform hover:scale-105"
-                  >
-                    <Image src={cake.image} alt={cake.name} objectFit="cover" className="h-56 w-full" />
-                    <Box p={6}>
-                      <Heading as="h3" size="md" color="#556b2f" fontWeight="bold">
-                        {cake.name}
-                      </Heading>
-                      <Text mt={4} color="#6b8e23">
-                        {cake.description}
-                      </Text>
-                      <Text fontSize="lg" fontWeight="bold" color="#8b4513">
-                        ${cake.price}
-                      </Text>
-                      <Button as={Link} href={`/order/${cake._id}`} bgColor="#556b2f" color="#f5f5dc" mt={4} className='hover:decoration-none' style={{textDecoration:'none'}}>
-                        View Details
-                      </Button>
-                    </Box>
-                  </Box>
+  key={index}
+  bgColor="rgba(245, 245, 220, 0.8)"
+  borderRadius="md"
+  boxShadow="lg"
+  overflow="hidden"
+  className="transform transition-transform hover:scale-105 flex flex-col items-center relative truncate"
+  p={6}
+  
+  // Adjust this margin to give space for the image above the box
+>
+  <Box className="relative w-full flex justify-center">
+    <Image
+      src={cake.image}
+      alt={cake.name}
+      objectFit="cover"
+      className="h-56 w-56 rounded-full"
+      loading='lazy'
+      style={{
+        position: 'absolute',
+        top: '-50%',
+        zIndex: 1,
+      }}
+    />
+  </Box>
+  <Box className="w-full text-center mt-28">
+    <Heading as="h3" size="md" color="#556b2f" fontWeight="bold">
+      {cake.name}
+    </Heading>
+    <Text mt={4} color="#6b8e23">
+      {cake.description}
+    </Text>
+    <Text fontSize="lg" fontWeight="bold" color="#8b4513">
+      ${cake.price}
+    </Text>
+    <Button
+      as={Link}
+      href={`/order/${cake._id}`}
+      bgColor="#556b2f"
+      color="#f5f5dc"
+      mt={4}
+      className="hover:decoration-none"
+      style={{ textDecoration: 'none' }}
+    >
+      View Details
+    </Button>
+  </Box>
+</Box>
+
                 ))}
               </SimpleGrid>
             )}
