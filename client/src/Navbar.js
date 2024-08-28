@@ -201,6 +201,59 @@ console.log(user)
                   {link.label}
                 </Link>
               ))}
+              <Link 
+                key='dashboard'
+                px={2}
+                py={1}
+                rounded={'md'}
+                _hover={{
+                  textDecoration: 'none',
+                  bg: hoverBgColor,
+                }}
+                href={"/user-dashboard"}
+              >
+               User Dashboard
+              </Link>
+              <Link 
+                key='dashboard'
+                px={2}
+                py={1}
+                rounded={'md'}
+                _hover={{
+                  textDecoration: 'none',
+                  bg: hoverBgColor,
+                }}
+                href={"/reception-dashboard"}
+              >
+                Receptionist Dashboard
+              </Link>
+
+              <Link 
+                key='dashboard'
+                px={2}
+                py={1}
+                rounded={'md'}
+                _hover={{
+                  textDecoration: 'none',
+                  bg: hoverBgColor,
+                }}
+                href={"/baker-dashboard"}
+              >
+              Baker  Dashboard
+              </Link>
+              <Link 
+                key='dashboard'
+                px={2}
+                py={1}
+                rounded={'md'}
+                _hover={{
+                  textDecoration: 'none',
+                  bg: hoverBgColor,
+                }}
+                href={"/shop-dashboard"}
+              >
+              Manager Dashboard
+              </Link>
             </VStack>
           </Box>
         </Collapse>
