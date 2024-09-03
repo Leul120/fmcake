@@ -40,11 +40,11 @@ const ReceptionistDashboard = ({socket}) => {
 fetchOrders()
   }, [text]);
  
-   useEffect(()=>{
+
     socket.on('updateOrders',()=>{
       console.log("hello")
       fetchOrders()})
-  },[socket])
+  
 
 console.log(cakeDetails)
   const showModal = (order) => {
