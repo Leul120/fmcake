@@ -9,11 +9,11 @@ const ApiFeatures=require('../utils/ApiFeatures')
 const port= 9000
 const { ObjectId } = mongoose.Types;
 const http = require('http');
-const socket=require('socket.io')(port,{
-  cors:{
-    origin:'*'
-  }
-})
+const socket = require('socket.io')(port, {
+    cors: {
+        origin: ['http://localhost:3001', 'https://customcake4.onrender.com']
+    }
+});
 
 socket.on("connection",socket=>{
     console.log(socket.id)
