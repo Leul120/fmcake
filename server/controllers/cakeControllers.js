@@ -11,7 +11,7 @@ const { ObjectId } = mongoose.Types;
 const http = require('http');
 const socket=require('socket.io')(port,{
   cors:{
-    origin:['http://localhost:3000']
+    origin:['*']
   }
 })
 
