@@ -8,7 +8,11 @@ const connectDB=require('./db/connectDB')
 require('dotenv').config()
 
 
-
+const http = require('http');
+const socketIo= require('socket.io')
+const { Socket } = require('dgram')
+const server = http.createServer(app);
+const socket = socketio(server);
 
 
 app.use(express.json())
@@ -43,3 +47,5 @@ const start=async ()=>{
 }
 
 start()
+
+module.exports=socket
