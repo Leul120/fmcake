@@ -6,15 +6,10 @@ const Cake = require('../models/cakeModel');
 const Order = require('../models/orderModel');
 const Review = require('../models/reviewModel');
 const ApiFeatures=require('../utils/ApiFeatures')
-const port= 9000
+const express=require('express')
+const app=express()
 const { ObjectId } = mongoose.Types;
-const http = require('http');
-const socket = require('socket.io')(port, {
-    cors: {
-        origin: ['http://localhost:3001', 'https://customcake4.onrender.com']
-    }
-});
-
+const socket=require('../app')
 socket.on("connection",socket=>{
     console.log(socket.id)
 })
