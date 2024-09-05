@@ -9,7 +9,12 @@ const ApiFeatures=require('../utils/ApiFeatures')
 const express=require('express')
 const app=express()
 const { ObjectId } = mongoose.Types;
-const socket=require('../app')
+const http = require('http');
+const socketIo= require('socket.io')
+const server = http.createServer(app);
+const socket = socketIo(server);
+
+
 socket.on("connection",socket=>{
     console.log(socket.id)
 })
