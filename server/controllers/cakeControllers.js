@@ -1,12 +1,11 @@
-// Require the cloudinary library
-const multer=require('multer')
-const cloudinary = require('cloudinary').v2;
+
 const mongoose=require('mongoose')
 const Cake = require('../models/cakeModel');
 const Order = require('../models/orderModel');
 const Review = require('../models/reviewModel');
 const ApiFeatures=require('../utils/ApiFeatures')
-const app=require('../app')
+const express=require('express')
+const app=express()
 const { ObjectId } = mongoose.Types;
 const http = require('http');
 const socketIo= require('socket.io')
