@@ -15,7 +15,7 @@ const server=http.createServer(app)
 const {Server}=require('socket.io')
 const socket=new Server(server,{
   cors:{
-    origin:"https://customcake4.vercel.app",
+    origin:["https://customcake4.vercel.app","*"],
     methods:['GET','POST']
   }
 })
