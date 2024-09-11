@@ -1,22 +1,24 @@
-
+// Require the cloudinary library
+const multer=require('multer')
+const cloudinary = require('cloudinary').v2;
 const mongoose=require('mongoose')
 const Cake = require('../models/cakeModel');
 const Order = require('../models/orderModel');
 const Review = require('../models/reviewModel');
 const ApiFeatures=require('../utils/ApiFeatures')
-const express=require('express')
-const app=express()
+const port= 9000
 const { ObjectId } = mongoose.Types;
 const http = require('http');
-const socketIo= require('socket.io')
-const server = http.createServer(app);
-const socket = require('socket.io')(server, {
-  cors: {
-    origin: "https://customcake4.vercel.app",
-    methods: ["GET", "POST"]
+const express=require('express')
+const app=express()
+const server=http.createServer(app)
+const {Server}=require('socket.io')
+const socket=new Server(server,{
+  cors:{
+    origin:"https://customcake4.vercel.app",
+    methods:['GET','POST']
   }
-});
-
+})
 
 socket.on("connection",socket=>{
     console.log(socket.id)
