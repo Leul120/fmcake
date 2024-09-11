@@ -18,7 +18,7 @@ import ShopDashboard from './ShopDashboard';
 import ReceptionistDashboard from './ReceprionistDashboard';
 import BakerDashboard from './BakerDashboard';
 import socketIO from 'socket.io-client';
-const socket = socketIO.connect('https://customcake4.onrender.com');
+const socket = socketIO.connect('http://customcake4.vercel.app');
 export const AppContext=createContext()
 // const socket=0
 function App() {
