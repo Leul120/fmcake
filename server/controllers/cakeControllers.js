@@ -9,14 +9,9 @@ const ApiFeatures=require('../utils/ApiFeatures')
 const port= 9000
 const { ObjectId } = mongoose.Types;
 const http = require('http');
-const express=require('express')
-const app=express()
-const server=http.createServer(app)
-const {Server}=require('socket.io')
-const socket=new Server(server,{
+const socket=require('socket.io')('https://customcake4.vercel.app',{
   cors:{
-    origin:["https://customcake4.vercel.app","*"],
-    methods:['GET','POST']
+    origin:'*'
   }
 })
 
