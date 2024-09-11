@@ -10,7 +10,12 @@ const { ObjectId } = mongoose.Types;
 const http = require('http');
 const socketIo= require('socket.io')
 const server = http.createServer(app);
-const socket = socketIo(server);
+const socket = require('socket.io')(server, {
+  cors: {
+    origin: "https://customcake4.vercel.app",
+    methods: ["GET", "POST"]
+  }
+});
 
 
 socket.on("connection",socket=>{
